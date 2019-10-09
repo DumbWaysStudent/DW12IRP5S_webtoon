@@ -1,5 +1,5 @@
 import React, {Component,} from 'react';
-import {Container,Content,View,Text,Form,Item,CardItem,Icon, Input, Button,} from 'native-base';
+import {Container, Content, View ,Form, Item, CardItem, Icon, Input, Button, Text} from 'native-base';
 import {StyleSheet,Image,} from 'react-native';
 
 export default class Login extends Component{
@@ -70,7 +70,7 @@ render(){
           <Form >
             <Text style={styles.label}>Username</Text>
               <Item rounded style={{backgroundColor:'white'}}>
-                 <Icon active name='home' />
+                 <Icon active name='user' />
                   <Input placeholder="Username" onChangeText={username => this.ValidationUs(username)}
                   keyboardType= "Email"/>
               </Item>

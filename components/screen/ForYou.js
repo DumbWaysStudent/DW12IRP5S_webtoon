@@ -3,8 +3,10 @@ import {StyleSheet, Image, View, Dimensions, ScrollView} from 'react-native';
 import Carousel from 'react-native-banner-carousel';
 import {Container, Header, Content, Footer, Button, FooterTab, Input, Item, Row, Text, Icon } from 'native-base';
 
+
+
 const BannerWidth = Dimensions.get('window').width;
-const BannerHeight = 270;
+const BannerHeight = 250;
 
 
 export default class ForYou extends Component{
@@ -37,7 +39,7 @@ export default class ForYou extends Component{
     render() {
         return(
             <Container>
-                <Header searchBar style={{backgroundColor:'green'}}>
+                <Header searchBar style={{backgroundColor:'#39c45e'}}>
                 <Item rounded>
                     <Input placeholder="Search" />
                     <Icon name="ios-search"/>
@@ -78,8 +80,8 @@ export default class ForYou extends Component{
                                     <Image source={{ uri : image.image}} style={styles.rowimg}/>
                                     <View style={styles.titleall}>
                                         <Text style={styles.rowtxt}>{image.title}</Text>
-                                        <Button small success><Text>Add To Favorite</Text></Button>
-                                    </View>
+                                        <Button small warning><Text> + Add To Favorite </Text></Button>
+                                    </View> 
                                 </Row>
                             </View>
                         ))}
@@ -87,7 +89,7 @@ export default class ForYou extends Component{
                     </Content>
             
                 <Footer>
-                    <FooterTab style={{backgroundColor:'green'}}>
+                    <FooterTab style={{backgroundColor:'#39c45e'}}>
                         <Button>
                             <Icon name ='apps'/>
                         </Button>
@@ -118,6 +120,7 @@ const styles = StyleSheet.create({
     },
     textStyle: {
         fontSize :22,
+        fontFamily : 'Georgia',
         fontWeight : 'bold'
     },
     Horizontal: {
@@ -137,6 +140,7 @@ const styles = StyleSheet.create({
     },
     textAll: {
         fontSize: 23,
+        fontFamily :'Georgia',
         fontWeight :'bold',
         marginLeft : 6,
         marginTop: 5
@@ -156,7 +160,9 @@ const styles = StyleSheet.create({
     },
     titleall:{
         alignItems: 'center',
-        marginLeft : 0
+        marginLeft : 0,
+        marginBottom: 50
+
 
     },
     rowtxt: {
