@@ -13,6 +13,7 @@ import { createStackNavigator,  } from 'react-navigation-stack';
 import Login from './components/screen/Login'
 import ForYou from './components/screen/ForYou'
 import Detail from './components/screen/Detail'
+import DetailEpisode from './components/screen/DetailEpisode'
 
 
 const onShare = async () => {
@@ -55,6 +56,25 @@ const SignedIn = createStackNavigator(
             screen: ForYou,
             title: 'ForYou',
             navigationOptions: {header: null}
+          },
+          DetailEpisode : {
+            screen : DetailEpisode,
+            title : 'DetailEpisode',
+            navigationOptions : () => ({
+              title : "Comics",
+              headerStyle: {
+                  backgroundColor : '#39c45e'
+              }, 
+              headerTintColor : '#101211',
+              headerTitleStyles : {
+                  fontWeight : 'bold',
+              },
+              headerRight :(
+                  <Icon name="share-alt" style={{color:'white', marginRight: 15}} onPress={() => onShare()}/>
+              ),
+  
+          })
+
           },
           Detail: {
               screen: Detail,

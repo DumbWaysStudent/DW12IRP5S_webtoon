@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {StyleSheet, Image, FlatList, Share} from 'react-native';
-import {Container, Content, View, Row, Text, Icon } from 'native-base';
+import {StyleSheet, Image, FlatList, TouchableOpacity} from 'react-native';
+import {Container, Content, View, Row, Text} from 'native-base';
 
 export default class Detail extends Component{
 
@@ -48,7 +48,9 @@ constructor(){
                     renderItem={({ item }) => (
                         <View style={styles.conView}>
                             <Row style={{marginTop:10}}>
+                                <TouchableOpacity onPress={() => this.props.navigation.navigate('DetailEpisode')}>
                                 <Image style={styles.conImg} source ={{uri : item.image}}/>
+                                </TouchableOpacity>
                                 <View style={styles.conval}>
                                     <Text style={styles.epstxt}>{item.Eps}</Text>
                                     <Text style={{marginTop : 10}}>{item.date}</Text>
