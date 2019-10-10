@@ -57,7 +57,7 @@ render(){
   return(
     <Container style={{backgroundColor:'#dce0dd'}}>
       <CardItem cardBody>
-              <Image source={{uri: 'https://i1.wp.com/www.comicsbeat.com/wp-content/uploads/2019/06/webtoon-min-1.png?fit=1200%2C450&ssl=1'}} style={{height: 240, width: null, flex: 2}}/>
+              <Image source={{uri: 'https://i1.wp.com/www.comicsbeat.com/wp-content/uploads/2019/06/webtoon-min-1.png?fit=1200%2C450&ssl=1'}} style={{height: 270, width: null, flex: 2}}/>
       </CardItem>
       <Content padder >
         <View style={styles.title}>
@@ -98,8 +98,8 @@ render(){
 const styles = StyleSheet.create({
   title:{
   alignItems: "center", 
-  marginTop:20, 
-  marginBottom:25, 
+  marginTop:30, 
+  marginBottom:30, 
   fontFamily: 'Austin-Light'
   },
   login: {
@@ -107,7 +107,8 @@ const styles = StyleSheet.create({
   marginBottom:3, 
   },
   container: {
-  paddingHorizontal: 30
+  paddingHorizontal: 30,
+ 
   },
   label: {
   padding: 5

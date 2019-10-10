@@ -23,7 +23,6 @@ export default class DetailEpisode extends Component {
                 <View style={styles.AllCon}> 
                     <FlatList
                     data = {this.state.banners}
-                    keyExtractor = {item => item.id}
                     renderItem = {({item}) => 
                     <View key={item.image}>
                         <Image style={styles.AllImg} source={{ uri: item.image }} />

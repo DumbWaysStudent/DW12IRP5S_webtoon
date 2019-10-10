@@ -66,16 +66,16 @@ export default class ForYou extends Component{
                     <ScrollView horizontal={true}>
                         {this.state.banners.map((image) => (
                             <View style={styles.Horizontal} key={image.image}>
-                                <TouchableOpacity onPress={() => this.props.navigation.navigate('Detail', {pictures:image.image, title:image.title})}>
+                                <TouchableOpacity onPress={() => this.props.navigation.navigate('Detail', {pictures:image.image, title:image.title})}> 
                                     <Image source={{ uri : image.image}} style={styles.Scrolimg}/>
                                     <Text style={styles.Scroltxt}> { image.title} </Text>
                                 </TouchableOpacity>
-                            </View>
-                        ))}
+                            </View> // {pictures:image.image, title:image.title})} pictures penampung nilai
+                        ))} 
                     </ScrollView>
                     </View>
 
-                    <View style={styles.allcon}>
+                    <View >
                         <Text style={styles.textAll}>All Comics </Text>
                         {this.state.banners.map((image) =>(
                             <View key={image.image}>
@@ -96,7 +96,7 @@ export default class ForYou extends Component{
                         <Button>
                             <Icon name ='apps'/>
                         </Button>
-                        <Button>
+                        <Button onPress={() => this.props.navigation.navigate('Favourite')}>
                             <Icon name = 'star'/>
                         </Button>
                         <Button>
@@ -112,6 +112,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center'
+
     },
     textStyle: {
         fontWeight : 'bold',
@@ -147,10 +148,6 @@ const styles = StyleSheet.create({
         fontWeight :'bold',
         marginLeft : 8,
         marginTop: 5
-    },
-    allcon: {
-
-
     },
     rowimg: {
         width: 110,

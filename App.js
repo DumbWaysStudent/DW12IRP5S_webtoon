@@ -2,8 +2,9 @@
 // import Login from './components/screen/Login';
 // import ForYou from './components/screen/ForYou';
 // import Detail from './components/screen/Detail';
+// import Favourite from './components/screen/Favourite';
 
-// export default Detail;
+// export default Favourite;
 import React, {Component} from 'react';
 import {Icon} from 'native-base';
 import {Share} from 'react-native';
@@ -14,6 +15,8 @@ import Login from './components/screen/Login'
 import ForYou from './components/screen/ForYou'
 import Detail from './components/screen/Detail'
 import DetailEpisode from './components/screen/DetailEpisode'
+import Favourite from './components/screen/Favourite'
+// import Profile from './components/screen/Profile'
 
 
 const onShare = async () => {
@@ -57,7 +60,7 @@ const SignedIn = createStackNavigator(
             title: 'ForYou',
             navigationOptions: {header: null}
           },
-          DetailEpisode : {
+        DetailEpisode : {
             screen : DetailEpisode,
             title : 'DetailEpisode',
             navigationOptions : () => ({
@@ -93,6 +96,12 @@ const SignedIn = createStackNavigator(
                 ),
     
             })
+          },
+          Favourite: {
+              screen: Favourite,
+              title : Favourite,
+              navigationOptions: {header: null}
+
           }
     },
     {

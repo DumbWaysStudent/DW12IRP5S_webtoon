@@ -37,7 +37,7 @@ constructor(){
     
     render(){
         return(
-            <Container>
+            <Container style={{backgroundColor:'#dce0dd'}}>
                 <Content > 
                     <View style={styles.headcon}>
                         <Image style={styles.headImg} source={{ uri : this.props.navigation.getParam('pictures') }} />
@@ -47,7 +47,7 @@ constructor(){
                     data={this.state.banners}
                     renderItem={({ item }) => (
                         <View style={styles.conView}>
-                            <Row style={{marginTop:10}}>
+                            <Row>
                                 <TouchableOpacity onPress={() => this.props.navigation.navigate('DetailEpisode')}>
                                 <Image style={styles.conImg} source ={{uri : item.image}}/>
                                 </TouchableOpacity>
@@ -84,18 +84,19 @@ const styles = StyleSheet.create({
     headtxt : {
         fontSize: 17,
         fontWeight: 'bold',
-        marginTop: 10
+        marginTop: 10,
+        marginBottom :20
     },
 
     conView : {
         marginHorizontal:30,
-        marginBottom : 25
+        marginBottom : 10
     },
 
     conImg: {
         width: 100,
         height: 100,
-        borderWidth: 3,
+        borderWidth: 2,
         borderColor: 'black'
     },
 
@@ -106,11 +107,6 @@ const styles = StyleSheet.create({
     epstxt : {
         fontSize: 20,
         fontWeight: 'bold'
-    },
-
-
-
-
-
+    }
 
 })
