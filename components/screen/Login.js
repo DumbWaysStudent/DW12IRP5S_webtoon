@@ -70,7 +70,7 @@ render(){
           <Form >
             <Text style={styles.label}>Username</Text>
               <Item rounded style={{backgroundColor:'white'}}>
-                 <Icon active name='user' />
+                 <Icon active name='home' />
                   <Input placeholder="Username" onChangeText={username => this.ValidationUs(username)}
                   keyboardType= "Email"/>
               </Item>
@@ -82,7 +82,9 @@ render(){
                 </Item>
           </Form>
           <Button succes rounded block style={styles.button}
-          success disabled = {this.state.isDisabled} rounded block style={styles.button}>
+              success disabled = {this.state.isDisabled} rounded block style={styles.button} 
+              onPress={() => this.props.navigation.navigate('ForYou')}
+              >
             <Text >Log In</Text>
           </Button>
         </View>

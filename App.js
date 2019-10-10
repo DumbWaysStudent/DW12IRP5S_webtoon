@@ -1,5 +1,91 @@
 
-import Login from './components/screen/Login';
-import ForYou from './components/screen/ForYou';
+// import Login from './components/screen/Login';
+// import ForYou from './components/screen/ForYou';
+// import Detail from './components/screen/Detail';
 
-export default ForYou;
+// export default Detail;
+import React, {Component} from 'react';
+import {Icon} from 'native-base';
+import {Share} from 'react-native';
+import { createAppContainer, createSwitchNavigator} from 'react-navigation';
+import { createStackNavigator,  } from 'react-navigation-stack';
+
+import Login from './components/screen/Login'
+import ForYou from './components/screen/ForYou'
+import Detail from './components/screen/Detail'
+
+
+const onShare = async () => {
+    try {
+      const result = await Share.share({
+        message:
+          'React Native | A framework for building native apps using React',
+      });
+
+      if (result.action === Share.sharedAction) {
+        if (result.activityType) {
+          // shared with activity type of result.activityType
+        } else {
+          // shared
+        }
+      } else if (result.action === Share.dismissedAction) {
+        // dismissed
+      }
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
+const SignedOut = createStackNavigator(
+    {
+      Login: {
+        screen: Login,
+        title: 'Login',
+        navigationOptions: {header: null},
+      }
+    },
+    {
+      initialRouteName: 'Login',
+    }
+  );
+
+const SignedIn = createStackNavigator(
+    {
+        ForYou: {
+            screen: ForYou,
+            title: 'ForYou',
+            navigationOptions: {header: null}
+          },
+          Detail: {
+              screen: Detail,
+              title: 'Detail',
+              navigationOptions : () => ({
+                title : "Detail Comics",
+                headerStyle: {
+                    backgroundColor : '#39c45e'
+                }, 
+                headerTintColor : '#101211',
+                headerTitleStyles : {
+                    fontWeight : 'bold',
+                },
+                headerRight :(
+                    <Icon name="share-alt" style={{color:'white', marginRight: 15}} onPress={() => onShare()}/>
+                ),
+    
+            })
+          }
+    },
+    {
+        initialRouteName: 'ForYou',
+    });
+
+    const Switch = createSwitchNavigator({
+        SignedIn: SignedIn, 
+        SignedOut: SignedOut
+        },
+        {
+        initialRouteName: "SignedOut",
+        });
+
+
+    export default createAppContainer(Switch);

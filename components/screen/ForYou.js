@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import {StyleSheet, Image, View, Dimensions, ScrollView} from 'react-native';
+import {StyleSheet, Image, View, Dimensions, TouchableOpacity,ScrollView} from 'react-native';
 import Carousel from 'react-native-banner-carousel';
 import {Container, Header, Content, Footer, Button, FooterTab, Input, Item, Row, Text, Icon } from 'native-base';
+// import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
 
@@ -65,8 +66,10 @@ export default class ForYou extends Component{
                     <ScrollView horizontal={true}>
                         {this.state.banners.map((image) => (
                             <View style={styles.Horizontal} key={image.image}>
-                                <Image source={{ uri : image.image}} style={styles.Scrolimg}/>
-                                <Text style={styles.Scroltxt}> { image.title} </Text>
+                                <TouchableOpacity onPress={() => this.props.navigation.navigate('Detail', {pictures:image.image, title:image.title})}>
+                                    <Image source={{ uri : image.image}} style={styles.Scrolimg}/>
+                                    <Text style={styles.Scroltxt}> { image.title} </Text>
+                                </TouchableOpacity>
                             </View>
                         ))}
                     </ScrollView>
@@ -142,7 +145,7 @@ const styles = StyleSheet.create({
         fontSize: 23,
         fontFamily :'Georgia',
         fontWeight :'bold',
-        marginLeft : 6,
+        marginLeft : 8,
         marginTop: 5
     },
     allcon: {
@@ -154,14 +157,14 @@ const styles = StyleSheet.create({
         height: 110,
         marginTop: 5,
         borderWidth: 2,
-        marginHorizontal : 15,
+        marginHorizontal : 10,
         marginVertical: 10
 
     },
     titleall:{
         alignItems: 'center',
         marginLeft : 0,
-        marginBottom: 50
+        marginBottom: 40
 
 
     },
