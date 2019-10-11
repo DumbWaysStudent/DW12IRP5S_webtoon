@@ -11,12 +11,15 @@ import {Share} from 'react-native';
 import { createAppContainer, createSwitchNavigator} from 'react-navigation';
 import { createStackNavigator,  } from 'react-navigation-stack';
 
+
 import Login from './components/screen/Login'
 import ForYou from './components/screen/ForYou'
 import Detail from './components/screen/Detail'
 import DetailEpisode from './components/screen/DetailEpisode'
 import Favourite from './components/screen/Favourite'
 import Profile from './components/screen/Profile'
+import EditProfile from './components/screen/EditProfile'
+import MyWebtoon from './components/screen/MyWebtoon'
 
 const onShare = async () => {
     try {
@@ -104,10 +107,14 @@ const SignedIn = createStackNavigator(
           },
           Profile: {
             screen: Profile,
-            title: Profile,
+            title: 'Profile'
+          },
+          EditProfile : {
+            screen : EditProfile,
+            title : 'EditProfile',
             navigationOptions: {header: null},
             navigationOptions : () => ({
-              title : "Profile",
+              title : "Edit Profile",
               headerStyle: {
                   backgroundColor : '#39c45e'
               }, 
@@ -116,11 +123,27 @@ const SignedIn = createStackNavigator(
                   fontWeight : 'bold',
               },
               headerRight :(
-                  <Icon name="ios-create" style={{color:'white', marginRight: 15}} />
+                  <Icon name="checkmark-circle" style={{color:'white', marginRight: 15}}  onPress={() => alert("Succes")}/>
               ),
-  
           })
-
+          },
+          MyWebtoon : {
+            screen : MyWebtoon,
+            title : 'MyWebtoon',
+            navigationOptions : () => ({
+              title : "My Webtoon",
+              headerStyle: {
+                  backgroundColor : '#39c45e'
+              }, 
+              headerTintColor : '#101211',
+              headerTitleStyles : {
+                  fontWeight : 'bold',
+              },
+              headerRight :(
+                  <Icon name="checkmark-circle" style={{color:'white', marginRight: 15}}  onPress={() => alert("Succes")}/>
+              ),
+          })
+            
           }
     },
     {

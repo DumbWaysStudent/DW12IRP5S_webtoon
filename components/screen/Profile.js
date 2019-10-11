@@ -4,11 +4,26 @@ import { Container, Header, Content, Footer, FooterTab, Icon, Text, Item, Input,
 
 export default class Profile extends Component {
 
+    static navigationOptions = ({navigation}) => {
+        return {
+            title : "Profile",
+              headerStyle: {
+                  backgroundColor : '#39c45e'
+              }, 
+              headerTintColor : '#101211',
+              headerTitleStyles : {
+                  fontWeight : 'bold',
+              },
+              headerRight :(
+                  <Icon name="ios-create" style={{color:'white', marginRight: 15}} onPress= {() => navigation.navigate('EditProfile')}/>
+              ),
+        };
+    };
     render() {
         return (
             <Container>
                 <Content style={{backgroundColor:'#dce0dd'}}>
-                    <View style={{ alignItems: 'center', marginVertical: 25 }}>
+                    <View style={{ alignItems: 'center', marginVertical: 30 }}>
 
                         <Image source={{ uri: 'https://scontent.fcgk8-1.fna.fbcdn.net/v/t1.0-9/36828618_1991963964156435_2359163301616680960_n.jpg?_nc_cat=108&_nc_eui2=AeH5HI_DQv_jprY-I0CJ4SgJBIgk6C2usFR4j6ADAAfriNxfAOt2Tw8jMUuBDCAAVLF_hcRIFwfXIqw2aVR5mWM8uDtYVQ1_LkaVqKcSSi0mOQ&_nc_oc=AQnlsV4XWF5Z6R09ePLpQwkqDLwJpKJVTxYiHyJ7FHmhbeLdtZWb40WeTlyP0e36uS8&_nc_ht=scontent.fcgk8-1.fna&oh=3260aca4b9b03fe7c540412fa60f5fe1&oe=5E201CD9' }} style={styles.profImg} />
 
@@ -16,7 +31,7 @@ export default class Profile extends Component {
                     </View>
 
                     <Card>
-                        <CardItem header button onPress={() => alert("Okay Will be prosessed")} style={{backgroundColor:'#39c45e'}}>
+                        <CardItem header button onPress={() => this.props.navigation.navigate('MyWebtoon')} style={{backgroundColor:'#39c45e'}}>
                             <Text > My Webtoon Creation </Text>
                         </CardItem>
                         <CardItem footer button onPress={() => alert(" Thank You ")} style={{backgroundColor:'#39c45e'}}>
@@ -53,9 +68,9 @@ const styles = StyleSheet.create({
         backgroundColor: '#39c45e',
     },
 
-    icon: {
-        color: 'white'
-    },
+    // icon: {
+    //     color: 'white'
+    // },
 
     profImg: {
         width: 150,
