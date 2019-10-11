@@ -76,7 +76,7 @@ export default class EditProfile extends Component {
     render() {
         return (
             <Container>
-                <Content style={{backgroundColor:'#dce0dd'}}>
+                <Content>
                     <View style={{ alignItems: 'center', marginVertical: 25 }}>
                     <TouchableOpacity onPress={this.selectPhotoTapped.bind(this)}>
                 <View

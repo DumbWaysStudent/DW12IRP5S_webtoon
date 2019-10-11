@@ -20,6 +20,7 @@ import Favourite from './components/screen/Favourite'
 import Profile from './components/screen/Profile'
 import EditProfile from './components/screen/EditProfile'
 import MyWebtoon from './components/screen/MyWebtoon'
+import CreateWebtoon from './components/screen/CreateWebtoon'
 
 const onShare = async () => {
     try {
@@ -142,9 +143,26 @@ const SignedIn = createStackNavigator(
               headerRight :(
                   <Icon name="checkmark-circle" style={{color:'white', marginRight: 15}}  onPress={() => alert("Succes")}/>
               ),
+          })  
+          },
+          CreateWebtoon : {
+            screen : CreateWebtoon,
+            title : 'CreateWebtoon',
+            navigationOptions : () => ({
+              title : "Create Webtoon",
+              headerStyle: {
+                  backgroundColor : '#39c45e'
+              }, 
+              headerTintColor : '#101211',
+              headerTitleStyles : {
+                  fontWeight : 'bold',
+              },
+              headerRight :(
+                  <Icon name="checkmark-circle" style={{color:'white', marginRight: 15}}  onPress={() => alert("Succes")}/>
+              ),
           })
-            
           }
+           
     },
     {
         initialRouteName: 'ForYou',

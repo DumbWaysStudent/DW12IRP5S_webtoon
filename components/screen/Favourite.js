@@ -39,7 +39,7 @@ export default class Favourite extends Component{
                     <Text>Search</Text>
                 </Button>
                 </Header>
-            <Content style={{backgroundColor:'#dce0dd'}}>
+            <Content>
             <FlatList
                     data={this.state.banners}
                     renderItem={({ item }) => (

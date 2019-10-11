@@ -111,8 +111,8 @@ export default class ForYou extends Component{
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center'
-
+        justifyContent: 'center',
+        padding : 1
     },
     textStyle: {
         fontWeight : 'bold',

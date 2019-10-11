@@ -31,7 +31,7 @@ export default class MyWebtoon extends Component{
     render(){
         return(
             <Container>
-            <Content style={{backgroundColor:'#dce0dd'}}>
+            <Content>
             <FlatList
                     data={this.state.banners}
                     renderItem={({ item }) => (
@@ -54,8 +54,8 @@ export default class MyWebtoon extends Component{
                     containerStyle={{ }}
                     style={{ backgroundColor: '#39c45e' }}
                     position="bottomRight"
-                    onPress={() => this.setState({ active: !this.state.active })}>
-                    <Icon name="share" />
+                    onPress={() => this.props.navigation.navigate('CreateWebtoon')}>
+                    <Icon name="ios-create" />
             </Fab>
             </View>
             </Container>
