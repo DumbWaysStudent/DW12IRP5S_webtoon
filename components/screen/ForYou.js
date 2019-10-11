@@ -99,7 +99,7 @@ export default class ForYou extends Component{
                         <Button onPress={() => this.props.navigation.navigate('Favourite')}>
                             <Icon name = 'star'/>
                         </Button>
-                        <Button>
+                        <Button onPress={() => this.props.navigation.navigate('Profile')}>
                             <Icon name = 'person'/>
                         </Button>
                     </FooterTab>

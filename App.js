@@ -16,8 +16,7 @@ import ForYou from './components/screen/ForYou'
 import Detail from './components/screen/Detail'
 import DetailEpisode from './components/screen/DetailEpisode'
 import Favourite from './components/screen/Favourite'
-// import Profile from './components/screen/Profile'
-
+import Profile from './components/screen/Profile'
 
 const onShare = async () => {
     try {
@@ -101,6 +100,26 @@ const SignedIn = createStackNavigator(
               screen: Favourite,
               title : Favourite,
               navigationOptions: {header: null}
+
+          },
+          Profile: {
+            screen: Profile,
+            title: Profile,
+            navigationOptions: {header: null},
+            navigationOptions : () => ({
+              title : "Profile",
+              headerStyle: {
+                  backgroundColor : '#39c45e'
+              }, 
+              headerTintColor : '#101211',
+              headerTitleStyles : {
+                  fontWeight : 'bold',
+              },
+              headerRight :(
+                  <Icon name="ios-create" style={{color:'white', marginRight: 15}} />
+              ),
+  
+          })
 
           }
     },
