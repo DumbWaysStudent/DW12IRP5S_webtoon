@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {StyleSheet, View, Text, Image, FlatList} from 'react-native';
-import {Container, Content, Item, Header, Button, Input, Row, Fab, Icon} from 'native-base';
+import {Container, Content, Row, Fab, Icon} from 'native-base';
 
 export default class MyWebtoon extends Component{
 
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     conImg: {
         width: 80,
         height: 80,
-        borderWidth: 5,
+        borderWidth: 3,
         borderColor: 'black'
     },
 

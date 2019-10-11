@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Image, FlatList, TouchableOpacity } from 'react-native';
-import { View, Text, Content, Container, Row, Item, Input, Button, Icon } from 'native-base';
+import { View, Text, Content, Container, Row, Item, Input, Button } from 'native-base';
 
 export default class CreateWebtoon extends Component{
 
@@ -65,7 +65,7 @@ export default class CreateWebtoon extends Component{
                         keyExtractor={item => item.id}
                     />
 
-                    <Button block rounded success style={{ marginTop: 30, width: 300, marginHorizontal: 60 }}>
+                    <Button block rounded success style={{ marginTop: 30, width: 300, marginHorizontal: 60 }} onPress={() => this.props.navigation.navigate('CreateEpisode')}>
                         <Text> + Add Episode </Text>
                     </Button>
                 </Content>
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     conImg: {
         width: 100,
         height: 100,
-        borderWidth: 3,
+        borderWidth: 2,
         borderColor: 'black'
     },
     epstxt: {
