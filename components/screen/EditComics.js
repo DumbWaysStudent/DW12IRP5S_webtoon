@@ -64,7 +64,7 @@ export default class EditComics extends Component {
                         )}
                     />
 
-                    <Button block rounded success style={{ marginTop: 20, width: 300, marginHorizontal: 60 }} onPress={() => this.props.navigation.navigate('Favourite')} >
+                    <Button block rounded success style={{ marginTop: 20, width: 300, marginHorizontal: 60 }} onPress={() => this.props.navigation.navigate('CreateWebtoon')} >
                         <Text> Add Episode </Text>
                     </Button>
                     <Button block rounded warning style={{ marginTop: 10, width: 300, marginHorizontal: 60 }} >

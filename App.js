@@ -169,7 +169,7 @@ const SignedIn = createStackNavigator(
             screen : CreateEpisode,
             title : CreateEpisode,
             navigationOptions : () => ({
-              title : "Create Episode",
+              title : "Add Image",
               headerStyle: {
                   backgroundColor : '#39c45e'
               }, 
