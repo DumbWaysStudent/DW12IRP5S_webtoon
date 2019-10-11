@@ -46,12 +46,10 @@ render() {
 
                             </Row>
                         </View>
-
                     )}
-                 
                 />
 
-                <Button block rounded success style={{ marginTop: 30, width: 300, marginHorizontal: 60 }}>
+                <Button block rounded success style={{ marginTop: 30, width: 300, marginHorizontal: 60 }} onPress={() => this.props.navigation.navigate('EditComics')}>
                     <Text> + Image </Text>
                 </Button>
 

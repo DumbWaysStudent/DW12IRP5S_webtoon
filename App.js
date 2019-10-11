@@ -22,6 +22,8 @@ import EditProfile from './components/screen/EditProfile'
 import MyWebtoon from './components/screen/MyWebtoon'
 import CreateWebtoon from './components/screen/CreateWebtoon'
 import CreateEpisode from './components/screen/CreateEpisode'
+import EditComics  from './components/screen/EditComics'
+import EditWebtoo from './components/screen/EditWebtoo'
 
 const onShare = async () => {
     try {
@@ -179,6 +181,41 @@ const SignedIn = createStackNavigator(
                   <Icon name="checkmark-circle" style={{color:'white', marginRight: 15}}  onPress={() => alert("Succes")}/>
               ),
           })
+          },
+          EditComics : {
+            screen : EditComics,
+            title : EditComics,
+            navigationOptions : () => ({
+              title : "Edit Webtoon ",
+              headerStyle: {
+                  backgroundColor : '#39c45e'
+              }, 
+              headerTintColor : '#101211',
+              headerTitleStyles : {
+                  fontWeight : 'bold',
+              },
+              headerRight :(
+                  <Icon name="checkmark-circle" style={{color:'white', marginRight: 15}}  onPress={() => alert("Succes")}/>
+              ),
+          })
+          },
+          EditWebtoo : {
+            screen : EditWebtoo,
+            title : EditWebtoo,
+            navigationOptions : () => ({
+              title : "Edit Episode",
+              headerStyle: {
+                  backgroundColor : '#39c45e'
+              }, 
+              headerTintColor : '#101211',
+              headerTitleStyles : {
+                  fontWeight : 'bold',
+              },
+              headerRight :(
+                  <Icon name="checkmark-circle" style={{color:'white', marginRight: 15}}  onPress={() => alert("Succes")}/>
+              ),
+          })
+
           }        
     },
     {

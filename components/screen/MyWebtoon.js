@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, View, Text, Image, FlatList} from 'react-native';
+import {StyleSheet, View, Text, Image,TouchableOpacity, FlatList} from 'react-native';
 import {Container, Content, Row, Fab, Icon} from 'native-base';
 
 export default class MyWebtoon extends Component{
@@ -37,7 +37,9 @@ export default class MyWebtoon extends Component{
                     renderItem={({ item }) => (
                         <View style={styles.conView}>
                             <Row style={{marginTop:10}}>
+                                <TouchableOpacity onPress={() => this.props.navigation.navigate('EditComics')}>
                                 <Image style={styles.conImg} source ={{uri : item.image}}/>
+                                </TouchableOpacity>
                                 <View style={styles.conval}>
                                     <Text style={styles.epstxt}>{item.title}</Text>
                                     <Text style={{marginTop : 10}}>{item.Text}</Text>
