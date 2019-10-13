@@ -59,13 +59,13 @@ export default class Favourite extends Component{
             <Footer>
                     <FooterTab style={{backgroundColor:'#39c45e'}}>
                         <Button onPress={() => this.props.navigation.navigate('ForYou')}>
-                            <Icon name ='apps'/>
+                            <Icon name ='apps' style={styles.icon}/>
                         </Button>
                         <Button onPress={() => this.props.navigation.navigate('Favourite')}>
-                            <Icon name = 'star'/>
+                            <Icon name = 'star' style={styles.icon}/>
                         </Button>
                         <Button onPress={() => this.props.navigation.navigate('Profile')}>
-                            <Icon name = 'person'/>
+                            <Icon name = 'person'style={styles.icon}/>
                         </Button>
                     </FooterTab>
                 </Footer>
@@ -85,6 +85,10 @@ const styles = StyleSheet.create({
         height: 80,
         borderWidth: 5,
         borderColor: 'black'
+    },
+
+    icon : {
+        color : 'white'
     },
 
     conval: {
