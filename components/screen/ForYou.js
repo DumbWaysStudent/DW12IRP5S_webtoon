@@ -94,13 +94,13 @@ export default class ForYou extends Component{
                 <Footer>
                     <FooterTab style={{backgroundColor:'#39c45e'}}>
                         <Button>
-                            <Icon name ='apps'/>
+                            <Icon name ='apps'style={styles.icon}/>
                         </Button>
                         <Button onPress={() => this.props.navigation.navigate('Favourite')}>
-                            <Icon name = 'star'/>
+                            <Icon name = 'star' style={styles.icon}/>
                         </Button>
                         <Button onPress={() => this.props.navigation.navigate('Profile')}>
-                            <Icon name = 'person'/>
+                            <Icon name = 'person' style={styles.icon}/>
                         </Button>
                     </FooterTab>
                 </Footer>
@@ -118,6 +118,9 @@ const styles = StyleSheet.create({
         fontWeight : 'bold',
         fontSize : 23,
         margin : 8
+    },
+    icon : {
+        color : 'white'
     },
     Scroll: {
         margin: 10

@@ -55,7 +55,7 @@ export default class CreateWebtoon extends Component{
                                         <Image style={styles.conImg} source={{ uri: item.image }} />
                                     <View style={styles.conval}>
                                         <Text style={styles.epstxt}> {item.Eps} </Text>
-                                        <Text style={{ marginTop: 10 }}> {item.date} </Text>
+                                        <Text style={{ marginTop: 10, fontSize:15 }}> {item.date} </Text>
                                     </View>
 
                                 </Row>
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
         borderColor: 'black'
     },
     epstxt: {
-        fontSize: 20,
+        fontSize: 15,
         fontWeight: 'bold'
     },
     conval: {
