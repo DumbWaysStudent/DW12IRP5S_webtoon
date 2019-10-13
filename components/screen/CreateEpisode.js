@@ -41,7 +41,7 @@ render() {
                                 <Image style={styles.conImg} source={{ uri: item.image }} />
                                 <View style={styles.conval}>
                                     <Text style={styles.epstxt}> {item.title} </Text>
-                                    <Button small danger style={{ marginTop: 10 }} onPress={() => alert('Are you sure')} ><Text> Delete  </Text></Button>
+                                    <Button rounded small danger style={{ marginTop: 10 }} onPress={() => alert('Are you sure')} ><Text> Delete  </Text></Button>
                                 </View>
 
                             </Row>
@@ -88,7 +88,7 @@ conView: {
 conImg: {
     width: 100,
     height: 100,
-    borderWidth: 3,
+    borderWidth: 2,
     borderColor: 'black'
 },
 
@@ -97,7 +97,7 @@ conval: {
 },
 
 epstxt: {
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: 'bold'
 },
 })

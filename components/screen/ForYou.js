@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, Image, View, Dimensions, TouchableOpacity,ScrollView} from 'react-native';
+import {StyleSheet, Image, View, Dimensions, TouchableOpacity ,StatusBar,ScrollView} from 'react-native';
 import Carousel from 'react-native-banner-carousel';
 import {Container, Header, Content, Footer, Button, FooterTab, Input, Item, Row, Text, Icon } from 'native-base';
 
@@ -12,7 +12,7 @@ export default class ForYou extends Component{
         super();
         this.state = {
                 banners : [{
-                    title: 'The Secret of Angel',
+                    title: 'The Secret Angel',
                     image: 'https://cdn.idntimes.com/content-images/community/2019/03/opera-snapshot-2019-03-13-211947-wwwwebtoonscom-0f5ff5e345298954bf286ad981cd4c9c_600x400.png'
                 }, {
                     title: 'Pasutri Gaje',
@@ -74,12 +74,12 @@ export default class ForYou extends Component{
                     <View style={styles.Radius} >
                         <Text style={styles.textAll}>All Comics </Text>
                         {this.state.banners.map((image) =>(
-                            <View key={image.image} >
+                            <View key={image.image} style={styles.Images}>
                                 <Row>
                                     <Image source={{ uri : image.image}} style={styles.rowimg}/>
                                     <View style={styles.titleall}>
                                         <Text style={styles.rowtxt}>{image.title}</Text>
-                                        <Button small warning onPress={() => this.props.navigation.navigate('Favourite')}><Text> + Add To Favorite </Text></Button>
+                                        <Button rounded small success onPress={() => this.props.navigation.navigate('Favourite')}><Text> + Add To Favorite </Text></Button>
                                     </View> 
                                 </Row>
                             </View>

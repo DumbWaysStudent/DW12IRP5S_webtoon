@@ -93,7 +93,7 @@ conView: {
 conImg: {
     width: 100,
     height: 100,
-    borderWidth: 3,
+    borderWidth: 2,
     borderColor: 'black'
 },
 

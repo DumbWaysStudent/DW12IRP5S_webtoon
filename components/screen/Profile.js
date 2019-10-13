@@ -24,10 +24,9 @@ export default class Profile extends Component {
             <Container>
                 <Content>
                     <View style={{ alignItems: 'center', marginVertical: 50 }}>
-
-                        <Image source={{ uri: 'https://scontent.fcgk8-1.fna.fbcdn.net/v/t1.0-9/36828618_1991963964156435_2359163301616680960_n.jpg?_nc_cat=108&_nc_eui2=AeH5HI_DQv_jprY-I0CJ4SgJBIgk6C2usFR4j6ADAAfriNxfAOt2Tw8jMUuBDCAAVLF_hcRIFwfXIqw2aVR5mWM8uDtYVQ1_LkaVqKcSSi0mOQ&_nc_oc=AQnlsV4XWF5Z6R09ePLpQwkqDLwJpKJVTxYiHyJ7FHmhbeLdtZWb40WeTlyP0e36uS8&_nc_ht=scontent.fcgk8-1.fna&oh=3260aca4b9b03fe7c540412fa60f5fe1&oe=5E201CD9' }} style={styles.profImg} />
-
-                        <Text style={styles.ProfText}> Rifqi Rizaldi Putra </Text>
+                        <Image source={{ uri: 'https://scontent.fcgk8-1.fna.fbcdn.net/v/t1.0-9/36828618_1991963964156435_2359163301616680960_n.jpg?_nc_cat=108&_nc_eui2=AeH5HI_DQv_jprY-I0CJ4SgJBIgk6C2usFR4j6ADAAfriNxfAOt2Tw8jMUuBDCAAVLF_hcRIFwfXIqw2aVR5mWM8uDtYVQ1_LkaVqKcSSi0mOQ&_nc_oc=AQnlsV4XWF5Z6R09ePLpQwkqDLwJpKJVTxYiHyJ7FHmhbeLdtZWb40WeTlyP0e36uS8&_nc_ht=scontent.fcgk8-1.fna&oh=3260aca4b9b03fe7c540412fa60f5fe1&oe=5E201CD9' }} 
+                        style={styles.profImg} />
+                        <Text style={styles.ProfText} style={{fontSize:20}}> Rifqi Rizaldi Putra </Text>
                     </View>
 
                     <Card>
@@ -85,7 +84,7 @@ const styles = StyleSheet.create({
         marginTop : 20,
         fontWeight: 'bold',
         letterSpacing: 2,
-        fontSize: 20
+      
     }
 
 })

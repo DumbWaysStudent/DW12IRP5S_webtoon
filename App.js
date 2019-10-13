@@ -7,7 +7,7 @@
 // export default Favourite;
 import React, {Component} from 'react';
 import {Icon} from 'native-base';
-import {Share} from 'react-native';
+import {Share, StatusBar} from 'react-native';
 import { createAppContainer, createSwitchNavigator} from 'react-navigation';
 import { createStackNavigator,  } from 'react-navigation-stack';
 
@@ -24,6 +24,7 @@ import CreateWebtoon from './components/screen/CreateWebtoon'
 import CreateEpisode from './components/screen/CreateEpisode'
 import EditComics  from './components/screen/EditComics'
 import EditWebtoo from './components/screen/EditWebtoo'
+
 
 const onShare = async () => {
     try {
@@ -225,6 +226,5 @@ const SignedIn = createStackNavigator(
         {
         initialRouteName: "SignedOut",
         });
-
 
     export default createAppContainer(Switch);

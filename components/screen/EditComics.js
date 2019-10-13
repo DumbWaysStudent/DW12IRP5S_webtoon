@@ -54,7 +54,7 @@ export default class EditComics extends Component {
 
                             <View style={styles.conval}>
                                 <Text style={styles.epstxt}> {item.Text} </Text>
-                                <Text style={{ marginTop: 10 , fontSize:15}}> {item.title} </Text>
+                                <Text style={{ marginTop: 10 , fontSize:13}}> {item.title} </Text>
                              </View>
 
                                 </Row>
