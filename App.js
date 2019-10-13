@@ -171,7 +171,7 @@ const SignedIn = createStackNavigator(
               headerStyle: {
                   backgroundColor : '#39c45e'
               }, 
-              headerTintColor : '#101211',
+              headerTintColor : 'white',
               headerTitleStyles : {
                   fontWeight : 'bold',
               },
