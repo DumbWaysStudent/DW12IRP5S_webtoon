@@ -74,7 +74,7 @@ const SignedIn = createStackNavigator(
               headerStyle: {
                   backgroundColor : '#39c45e'
               }, 
-              headerTintColor : '#101211',
+              headerTintColor : 'white',
               headerTitleStyles : {
                   fontWeight : 'bold',
               },
@@ -93,7 +93,7 @@ const SignedIn = createStackNavigator(
                 headerStyle: {
                     backgroundColor : '#39c45e'
                 }, 
-                headerTintColor : '#101211',
+                headerTintColor : 'white',
                 headerTitleStyles : {
                     fontWeight : 'bold',
                 },
@@ -122,7 +122,7 @@ const SignedIn = createStackNavigator(
               headerStyle: {
                   backgroundColor : '#39c45e'
               }, 
-              headerTintColor : '#101211',
+              headerTintColor : 'white',
               headerTitleStyles : {
                   fontWeight : 'bold',
               },
@@ -139,13 +139,10 @@ const SignedIn = createStackNavigator(
               headerStyle: {
                   backgroundColor : '#39c45e'
               }, 
-              headerTintColor : '#101211',
+              headerTintColor : 'white',
               headerTitleStyles : {
                   fontWeight : 'bold',
               },
-              headerRight :(
-                  <Icon name="checkmark-circle" style={{color:'white', marginRight: 15}}  onPress={() => alert("Succes")}/>
-              ),
           })  
           },
           CreateWebtoon : {
@@ -156,7 +153,7 @@ const SignedIn = createStackNavigator(
               headerStyle: {
                   backgroundColor : '#39c45e'
               }, 
-              headerTintColor : '#101211',
+              headerTintColor : 'white',
               headerTitleStyles : {
                   fontWeight : 'bold',
               },
@@ -169,11 +166,11 @@ const SignedIn = createStackNavigator(
             screen : CreateEpisode,
             title : CreateEpisode,
             navigationOptions : () => ({
-              title : "Add Image",
+              title : "Create Episode",
               headerStyle: {
                   backgroundColor : '#39c45e'
               }, 
-              headerTintColor : '#101211',
+              headerTintColor : 'white',
               headerTitleStyles : {
                   fontWeight : 'bold',
               },
@@ -190,7 +187,7 @@ const SignedIn = createStackNavigator(
               headerStyle: {
                   backgroundColor : '#39c45e'
               }, 
-              headerTintColor : '#101211',
+              headerTintColor : 'white',
               headerTitleStyles : {
                   fontWeight : 'bold',
               },
@@ -203,11 +200,11 @@ const SignedIn = createStackNavigator(
             screen : EditWebtoo,
             title : EditWebtoo,
             navigationOptions : () => ({
-              title : "Edit Episode",
+              title : "Edit Episode ",
               headerStyle: {
                   backgroundColor : '#39c45e'
               }, 
-              headerTintColor : '#101211',
+              headerTintColor : 'white',
               headerTitleStyles : {
                   fontWeight : 'bold',
               },
@@ -215,7 +212,6 @@ const SignedIn = createStackNavigator(
                   <Icon name="checkmark-circle" style={{color:'white', marginRight: 15}}  onPress={() => alert("Succes")}/>
               ),
           })
-
           }        
     },
     {

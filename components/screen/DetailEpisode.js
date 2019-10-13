@@ -37,14 +37,15 @@ export default class DetailEpisode extends Component {
 
   const styles = StyleSheet.create({
     Share: {
-      marginRight:20},
+      marginRight:20
+    },
     AllContent: {
-      paddingVertical: 20},
+      paddingVertical: 10},
     AllCon: {
-      margin: 15, 
+      margin:5, 
       marginTop: 0},
     AllImg: { 
-      width: 380, 
+      width: 420, 
       height: 500, 
       }
   })

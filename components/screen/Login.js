@@ -55,13 +55,12 @@ export default class Login extends Component{
 
 render(){ 
   return(
-    <Container style={{backgroundColor:'#dce0dd'}}>
+    <Container style={{backgroundColor:'#dce0dd', borderRadius:20}}>
       <CardItem cardBody>
               <Image source={{uri: 'https://i1.wp.com/www.comicsbeat.com/wp-content/uploads/2019/06/webtoon-min-1.png?fit=1200%2C450&ssl=1'}} style={{height: 270, width: null, flex: 2}}/>
       </CardItem>
-      <Content padder >
+      <Content padder>
         <View style={styles.title}>
-       
           <Text style={styles.login}>Log In</Text>
           <Text>Login with your account WebToon</Text>
         </View>
@@ -107,8 +106,8 @@ const styles = StyleSheet.create({
   marginBottom:3, 
   },
   container: {
-  paddingHorizontal: 30,
- 
+  paddingHorizontal: 30
+  
   },
   label: {
   padding: 5

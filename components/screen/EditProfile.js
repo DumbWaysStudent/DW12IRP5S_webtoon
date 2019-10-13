@@ -142,7 +142,10 @@ export default class EditProfile extends Component {
       avatar: {
         borderRadius: 75,
         width: 200,
-        height: 200,
+        height: 200
+      },
+      icon : {
+        color : 'white'
       },
     footer: {
         backgroundColor: '#39c45e',

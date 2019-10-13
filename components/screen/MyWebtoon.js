@@ -72,9 +72,9 @@ const styles = StyleSheet.create({
     },
 
     conImg: {
-        width: 80,
-        height: 80,
-        borderWidth: 3,
+        width: 100,
+        height: 100,
+        borderWidth: 2,
         borderColor: 'black'
     },
 
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     },
 
     epstxt : {
-        fontSize: 20,
+        fontSize: 15,
         fontWeight: 'bold'
     }
 })

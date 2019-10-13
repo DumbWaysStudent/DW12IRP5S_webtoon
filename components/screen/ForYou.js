@@ -2,13 +2,9 @@ import React, {Component} from 'react';
 import {StyleSheet, Image, View, Dimensions, TouchableOpacity,ScrollView} from 'react-native';
 import Carousel from 'react-native-banner-carousel';
 import {Container, Header, Content, Footer, Button, FooterTab, Input, Item, Row, Text, Icon } from 'native-base';
-// import { TouchableOpacity } from 'react-native-gesture-handler';
-
-
 
 const BannerWidth = Dimensions.get('window').width;
 const BannerHeight = 250;
-
 
 export default class ForYou extends Component{
 
@@ -75,15 +71,15 @@ export default class ForYou extends Component{
                     </ScrollView>
                     </View>
 
-                    <View >
+                    <View style={styles.Radius} >
                         <Text style={styles.textAll}>All Comics </Text>
                         {this.state.banners.map((image) =>(
-                            <View key={image.image}>
+                            <View key={image.image} >
                                 <Row>
                                     <Image source={{ uri : image.image}} style={styles.rowimg}/>
                                     <View style={styles.titleall}>
                                         <Text style={styles.rowtxt}>{image.title}</Text>
-                                        <Button small warning><Text> + Add To Favorite </Text></Button>
+                                        <Button small warning onPress={() => this.props.navigation.navigate('Favourite')}><Text> + Add To Favorite </Text></Button>
                                     </View> 
                                 </Row>
                             </View>
@@ -94,13 +90,13 @@ export default class ForYou extends Component{
                 <Footer>
                     <FooterTab style={{backgroundColor:'#39c45e'}}>
                         <Button>
-                            <Icon name ='apps'/>
+                            <Icon name ='apps' style={styles.icon}/>
                         </Button>
                         <Button onPress={() => this.props.navigation.navigate('Favourite')}>
-                            <Icon name = 'star'/>
+                            <Icon name = 'star' style={styles.icon}/>
                         </Button>
                         <Button onPress={() => this.props.navigation.navigate('Profile')}>
-                            <Icon name = 'person'/>
+                            <Icon name = 'person' style={styles.icon}/>
                         </Button>
                     </FooterTab>
                 </Footer>
@@ -120,7 +116,9 @@ const styles = StyleSheet.create({
         margin : 8
     },
     Scroll: {
-        margin: 10
+        margin: 10,
+        marginBottom : 10,
+        marginTop : 10
     },
     textStyle: {
         fontSize :22,
@@ -139,20 +137,29 @@ const styles = StyleSheet.create({
         marginTop: 5
     }, 
     Scroltxt: {
-        padding: 3,
-        marginLeft : 5
+        padding: 2,
+        alignItems : 'center'
+
+    },
+    icon : {
+        color : 'white'
+    },
+    Radius:{
+        borderRadius: 50
     },
     textAll: {
         fontSize: 23,
         fontFamily :'Georgia',
         fontWeight :'bold',
-        marginLeft : 8,
-        marginTop: 5
+        marginLeft : 10,
+        marginTop: 5,
+        marginBottom : 5
     },
     rowimg: {
         width: 110,
         height: 110,
         marginTop: 5,
+        borderRadius : 20,
         borderWidth: 2,
         marginHorizontal : 10,
         marginVertical: 10
@@ -162,8 +169,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginLeft : 0,
         marginBottom: 40
-
-
     },
     rowtxt: {
         marginTop: 10,

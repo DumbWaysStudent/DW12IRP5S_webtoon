@@ -47,13 +47,13 @@ constructor(){
                     data={this.state.banners}
                     renderItem={({ item }) => (
                         <View style={styles.conView}>
-                            <Row>
+                            <Row style={styles.Rows}>
                                 <TouchableOpacity onPress={() => this.props.navigation.navigate('DetailEpisode')}>
                                 <Image style={styles.conImg} source ={{uri : item.image}}/>
                                 </TouchableOpacity>
                                 <View style={styles.conval}>
                                     <Text style={styles.epstxt}>{item.Eps}</Text>
-                                    <Text style={{marginTop : 10}}>{item.date}</Text>
+                                    <Text style={{marginTop : 10, fontSize:15}}>{item.date}</Text>
                                 </View>
                             </Row>
                         </View>
@@ -69,20 +69,23 @@ constructor(){
 const styles = StyleSheet.create({
 
     headcon: {
-        marginHorizontal : 15,
-        marginTop : 15,
-        alignSelf: 'center'
+        marginHorizontal : 10,
+        marginTop : 10,
+        alignSelf: 'center',
     },
 
     headImg: {
-        width: 360,
+        width: 400,
         height: 220,
         borderWidth: 3,
         borderColor: 'black'
     },
 
+    Rows : {
+        borderColor : 'white'
+    },
     headtxt : {
-        fontSize: 17,
+        fontSize: 15,
         fontWeight: 'bold',
         marginTop: 10,
         marginBottom :20
@@ -105,7 +108,7 @@ const styles = StyleSheet.create({
     },
 
     epstxt : {
-        fontSize: 20,
+        fontSize: 15,
         fontWeight: 'bold'
     }
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Image, FlatList, TouchableOpacity } from 'react-native';
+import { StyleSheet, Image, FlatList} from 'react-native';
 import { View, Text, Content, Container, Row, Item, Input, Button } from 'native-base';
 
 export default class CreateEpisode extends Component{

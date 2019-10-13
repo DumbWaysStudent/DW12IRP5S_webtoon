@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, View, Text, Image, FlatList} from 'react-native';
+import {StyleSheet, View, Text, Image, TouchableOpacity,FlatList} from 'react-native';
 import {Container, Content, Item, Header, Button,Footer, FooterTab, Input, Row, Icon} from 'native-base';
 
 export default class Favourite extends Component{
@@ -45,10 +45,12 @@ export default class Favourite extends Component{
                     renderItem={({ item }) => (
                         <View style={styles.conView}>
                             <Row style={{marginTop:10}}>
+                            <TouchableOpacity onPress={() => this.props.navigation.navigate('Detail', {pictures:item.image, title:item.title})}>
                                 <Image style={styles.conImg} source ={{uri : item.image}}/>
+                            </TouchableOpacity>
                                 <View style={styles.conval}>
                                     <Text style={styles.epstxt}>{item.title}</Text>
-                                    <Text style={{marginTop : 10}}>{item.Text}</Text>
+                                    <Text style={{marginTop : 10, color:'white'}}>{item.Text}</Text>
                                 </View>
                             </Row>
                         </View>
@@ -59,13 +61,13 @@ export default class Favourite extends Component{
             <Footer>
                     <FooterTab style={{backgroundColor:'#39c45e'}}>
                         <Button onPress={() => this.props.navigation.navigate('ForYou')}>
-                            <Icon name ='apps'/>
+                            <Icon name ='apps' style={styles.icon}/>
                         </Button>
                         <Button onPress={() => this.props.navigation.navigate('Favourite')}>
-                            <Icon name = 'star'/>
+                            <Icon name = 'star' style={styles.icon}/>
                         </Button>
                         <Button onPress={() => this.props.navigation.navigate('Profile')}>
-                            <Icon name = 'person'/>
+                            <Icon name = 'person' style={styles.icon}/>
                         </Button>
                     </FooterTab>
                 </Footer>
@@ -75,24 +77,32 @@ export default class Favourite extends Component{
 }
 const styles = StyleSheet.create({
     conView : {
-        marginHorizontal:30,
-     
+        marginHorizontal:10,
+        padding : 5,
+        borderRadius : 10,
+        backgroundColor : '#39c45e',
         marginTop : 10
     },
 
     conImg: {
         width: 80,
         height: 80,
-        borderWidth: 5,
-        borderColor: 'black'
+        marginBottom :10 ,
+        marginLeft : 10,
+        borderWidth: 2,
+        borderColor: 'white'
     },
 
     conval: {
-        margin : 15,
+        margin : 10,
     },
 
+    icon : {
+        color : 'white'
+    },
     epstxt : {
-        fontSize: 20,
+        fontSize: 15,
+        color: 'white',
         fontWeight: 'bold'
     }
 })
