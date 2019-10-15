@@ -7,6 +7,7 @@ const port = 5000
 
 app.use(bodyParser.json())
 const AuthController = require('./controllers/auth')
+const ForyousController = require('./controllers/foryous')
 const { authenticated } = require('./middleware')
 
 // app.group("api/v1", (router) => {
@@ -21,6 +22,8 @@ app.group("/api/v1", (router) => {
     //auth API
     router.post('/login', AuthController.login)
     router.post('/register', AuthController.register)
+    router.get('/webtoons', ForyousController.index)
+    router.get('/webtoon/:id', ForyousController.show)
 })
 
 app.listen(port, () => console.log(`Listening on port ${port}!`))
