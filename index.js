@@ -24,6 +24,7 @@ app.group("/api/v1", (router) => {
     router.post('/register', AuthController.register)
     router.get('/webtoons', ForyousController.index)
     router.get('/webtoon/:id', ForyousController.show)
+    router.get('/webtoon/:id/episode', ForyousController.episode)  
 })
 
 app.listen(port, () => console.log(`Listening on port ${port}!`))

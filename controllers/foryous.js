@@ -60,7 +60,7 @@ exports.episode = (req, res)=> {
 }
 
 exports.show = (req, res) => {
-    Foryou.findOne({where:{id: req.params.id}}).then(todo=> res.send(todo))
+    Foryou.findOne({where:{id: req.params.id}}).then(foryou=> res.send(foryou))
 }
 
 // exports.store = (req,res) => {
