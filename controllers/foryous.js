@@ -176,6 +176,22 @@ exports.ShowCreateUser = (req, res) => {
     }
     Episodequery.then(data=>res.send(data))
 }
+
+exports.UpdateToon = (req, res)=>{
+    const userId = req.params.userid
+    const toonId = req.params.toons_id
+
+    Foryou.update({
+        title : req.body.title,
+        genre: req.body.genre,
+        isFavourite : false,
+        image: req.body.image
+    },
+    {
+        where : {createdBy:userId, id:toonId}
+    }
+    ).then(data=>res.send(data))
+}
     // Episode.findAll ({
         
     //     include: [
