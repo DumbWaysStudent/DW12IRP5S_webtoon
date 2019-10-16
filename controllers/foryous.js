@@ -131,6 +131,68 @@ exports.getMyWebtoon = (req, res)=> {
      }).then(data => res.send(data))
      
 }
+exports.CreatedMyWebtoon = (req, res)=>{
+    const id = req.params.id;
+    Foryou.create({
+        title : req.body.title,
+        genre : req.body.genre,
+        isFavourite : false,
+        image : req.body.image,
+        createdBy : id,
+    }).then(data => res.send(data))
+}
+
+exports.ShowCreateUser = (req, res) => {
+    let Episodequery
+    // const userid = req.params.id
+    // const toons_id = req.params.tonns_id
+    
+    if((req.params.userid)&&(req.params.tonns_id)){
+        Episodequery = Episode.findAll({
+            where : {
+               titleId : req.params.toons_id
+            },
+            include : [{
+                model : Foryou,
+                as : "detailId",
+                where : {
+                    createdBy : req.params.userid
+                },
+                include : [{
+                    model : User,
+                    as : "created_By"
+                }]
+            }]
+        }) 
+    }else {
+        Episodequery = Episode.findAll({
+            where : { titleId :  req.params.userid
+            },
+            include : [{
+                model : Foryou,
+                as : "detailId"   
+            }]
+        })
+    }
+    Episodequery.then(data=>res.send(data))
+}
+    // Episode.findAll ({
+        
+    //     include: [
+    //         {
+    //             model: Foryou,
+    //             as: 'created_By',
+    //             where: {createdBy: userid, id: toons_id}
+               
+    //         } 
+    //     ]
+    // }).then(data => {
+    //     res.send(data)
+    // })
+
+    
+   
+
 // exports.store = (req,res) => {
 //     Fouryou.create(req.body).then(fouryou=>{
 //         res.send({
