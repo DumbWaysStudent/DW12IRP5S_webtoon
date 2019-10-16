@@ -205,6 +205,55 @@ exports.DeleteToon = (req, res) => {
         })
     })
 }
+exports.CreateEpisode = (req, res) => {
+    const userId = req.params.userid
+    const toonId = req.params.toons_id
+
+    Episode.findAll({
+        include:[
+            {
+                model : Foryou,
+                as : "detailId",
+                where :  {createdBy:userId, id:toonId},
+                attributes : []
+            }
+        ]
+    }).then(items => {
+        Episode.create({
+            titleId : toonId,
+            episode: req.body.episode,
+            image : req.body.image
+        }).then(data => {
+            res.send(data)
+        })
+    })
+}
+exports.ShowImage = (req, res) => {
+    const userId = req.params.userid
+    const toonId = req.params.toons_id
+    const epsId = req.params.eps_id
+
+    Page.findAll({
+        include : [
+            {
+                model : Episode,
+                as : "detail_Id",
+                where :  {titleId:toonId, id:epsId},
+                attributes : [],
+                include : [
+                    {
+                        model : Foryou,
+                        as :"detailId",
+                        where : {createdBy:userId, id:toonId}
+                    }
+                ]
+            }
+        ],
+        attributes: ["image"]
+    }).then(data => {
+        res.send(data)
+    })
+}
 
     // Episode.findAll ({
         
