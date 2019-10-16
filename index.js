@@ -36,6 +36,7 @@ app.group("/api/v1", (router) => {
     router.get('/user/:userid/webtoon/:toons_id/episode/:eps_id/images', authenticated, ForyousController.ShowImage)
     router.put('/user/:userid/webtoon/:toons_id/episode/:eps_id', authenticated, ForyousController.UpdatesEps)
     router.delete('/user/:userid/webtoon/:toons_id/episode/:eps_id', ForyousController.DeletemyEps)
+    router.post('/user/:userid/webtoon/:toons_id/episode/:eps_id/image', ForyousController.CreateImageEps)
     
 })  
 

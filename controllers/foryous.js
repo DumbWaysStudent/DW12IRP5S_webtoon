@@ -294,7 +294,38 @@ exports.UpdatesEps = (req, res) => {
         })
     })
  }
+exports.CreateImageEps = (req, res)=>{
+    const userId = req.params.userid
+    const toonId = req.params.toons_id
+    const epsId = req.params.eps_id
 
+    Page.findAll({
+        include : [
+            {
+                model : Episode,
+                as : "detail_Id",
+                where :  {titleId:toonId, id:epsId},
+                attributes : [],
+                include : [
+                    {
+                        model : Foryou,
+                        as :"detailId",
+                        where : {createdBy:userId, id:toonId}
+                    }
+                ]
+            }
+        ],
+    }).then(items => {
+        // if(item.length > 0 && req.body.episode)
+        Page.create({
+            episodeId : epsId,
+            page: req.body.page,
+            image : req.body.image
+        }).then(data => {
+            res.send(data)
+        });
+    })
+}
     // Episode.findAll ({
         
     //     include: [
