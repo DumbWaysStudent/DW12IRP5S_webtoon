@@ -276,8 +276,24 @@ exports.UpdatesEps = (req, res) => {
                 })
             })
         })
+ }
+ exports.DeletemyEps = (req, res)=> {
+    const userId = req.params.userid
+    const toonId = req.params.toons_id
+    const epsId = req.params.eps_id
 
-    }
+    Foryou.findAll({
+        where :  {createdBy:userId, id:toonId}
+    }).then(data => {
+        Episode.destroy({
+            where : {titleId:toonId, id:epsId}
+        }).then(data => {
+            res.send({
+                Message : "Delete succes"
+            })
+        })
+    })
+ }
 
     // Episode.findAll ({
         
