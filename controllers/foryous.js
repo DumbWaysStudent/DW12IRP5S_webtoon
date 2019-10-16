@@ -254,6 +254,30 @@ exports.ShowImage = (req, res) => {
         res.send(data)
     })
 }
+exports.UpdatesEps = (req, res) => {
+    const userId = req.params.userid
+    const toonId = req.params.toons_id
+    const epsId = req.params.eps_id
+
+    Foryou.findAll({
+        where :  {createdBy:userId, id:toonId},
+    })
+        .then(data => {
+            Episode.update({
+                episode: req.body.episode,
+                image: req.body.image
+            },
+            {
+                where : {titleId:toonId, id:epsId}
+            }
+            ).then(data =>{
+                res.send({
+                    message : "succes"
+                })
+            })
+        })
+
+    }
 
     // Episode.findAll ({
         
