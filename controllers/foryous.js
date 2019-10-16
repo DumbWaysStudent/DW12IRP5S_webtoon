@@ -192,6 +192,20 @@ exports.UpdateToon = (req, res)=>{
     }
     ).then(data=>res.send(data))
 }
+
+exports.DeleteToon = (req, res) => {
+    const userId = req.params.userid
+    const toonId = req.params.toons_id
+
+    Foryou.destroy({
+        where : {createdBy:userId, id:toonId}
+    }).then (data => {
+        res.send({
+            delete : "succes"
+        })
+    })
+}
+
     // Episode.findAll ({
         
     //     include: [

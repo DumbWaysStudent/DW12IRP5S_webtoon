@@ -29,8 +29,9 @@ app.group("/api/v1", (router) => {
     router.get('/webtoon/:toons_id/episode/:eps_id', ForyousController.detailEpisode) 
     router.get('/user/:id/webtoons', authenticated, ForyousController.getMyWebtoon) 
     router.post('/user/:id/webtoon', authenticated, ForyousController.CreatedMyWebtoon)
-    router.get('/user/:userid/webtoon/:toons_id/episodes', ForyousController.ShowCreateUser)
-    router.put('/user/:userid/webtoon/:toons_id', ForyousController.UpdateToon)
+    router.get('/user/:userid/webtoon/:toons_id/episodes', authenticated, ForyousController.ShowCreateUser)
+    router.put('/user/:userid/webtoon/:toons_id', authenticated, ForyousController.UpdateToon)
+    router.delete('/user/:userid/webtoon/:toons_id',authenticated, ForyousController.DeleteToon)
 })  
 
 app.listen(port, () => console.log(`Listening on port ${port}!`))
