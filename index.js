@@ -21,12 +21,13 @@ const { authenticated } = require('./middleware')
 app.group("/api/v1", (router) => {
 
     //auth API
-    router.post('/login', AuthController.login)
+    router.post('/login',  AuthController.login)
     router.post('/register', AuthController.register)
-    router.get('/webtoons', ForyousController.index)
+    router.get('/webtoons', authenticated, ForyousController.index)
     router.get('/webtoon/:id', ForyousController.showid)
     router.get('/webtoon/:id/episode', ForyousController.episode)
-    router.get('/webtoon/:toons_id/episode/:eps_id', ForyousController.detailEpisode)  
+    router.get('/webtoon/:toons_id/episode/:eps_id', ForyousController.detailEpisode) 
+    router.get('/user/:id/webtoons', authenticated, ForyousController.getMyWebtoon) 
 })
 
 app.listen(port, () => console.log(`Listening on port ${port}!`))

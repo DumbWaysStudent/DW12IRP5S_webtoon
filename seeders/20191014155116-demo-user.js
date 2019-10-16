@@ -1,23 +1,23 @@
 'use strict';
 
 module.exports = {
-  up: (queryInterface, Sequelize) => {
+  // up: (queryInterface, Sequelize) => {
    
-      return queryInterface.bulkInsert('users', [
-      {
-        email : 'rifqirizaldi@gmail.com',
-        password : 'rifqi'
-      },
-      {
-        email : 'Godokkasa@gmail.com',
-        password : 'godok'
-      }
-    ], {});
-  },
+  //     return queryInterface.bulkInsert('users', [
+  //     {
+  //       email : 'rifqirizaldi@gmail.com',
+  //       password : 'rifqi'
+  //     },
+  //     {
+  //       email : 'Godokkasa@gmail.com',
+  //       password : 'godok'
+  //     }
+  //   ], {});
+  // },
 
-  down: (queryInterface, Sequelize) => {
+  // down: (queryInterface, Sequelize) => {
    
-      return queryInterface.bulkDelete('users', null, {});
+  //     return queryInterface.bulkDelete('users', null, {});
     
-  }
+  // }
 };

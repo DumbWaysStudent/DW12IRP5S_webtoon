@@ -120,6 +120,17 @@ exports.detailEpisode = (req, res) => {
    })
 }
 
+exports.getMyWebtoon = (req, res)=> {
+    const id = req.params.id
+     Foryou.findAll({
+         where : {createdBy : id},
+         attributes : {
+             exclude : ['createdAt','cretaedBy']
+         }
+
+     }).then(data => res.send(data))
+     
+}
 // exports.store = (req,res) => {
 //     Fouryou.create(req.body).then(fouryou=>{
 //         res.send({
