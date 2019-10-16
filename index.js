@@ -1,9 +1,10 @@
 const express = require('express')
-const bodyParser = require('body-parser')
 require('express-group-routes')
 
 const app = express()
 const port = 5000
+
+const bodyParser = require('body-parser')
 
 app.use(bodyParser.json())
 const AuthController = require('./controllers/auth')
@@ -23,8 +24,9 @@ app.group("/api/v1", (router) => {
     router.post('/login', AuthController.login)
     router.post('/register', AuthController.register)
     router.get('/webtoons', ForyousController.index)
-    router.get('/webtoon/:id', ForyousController.show)
-    router.get('/webtoon/:id/episode', ForyousController.episode)  
+    router.get('/webtoon/:id', ForyousController.showid)
+    router.get('/webtoon/:id/episode', ForyousController.episode)
+    router.get('/webtoon/:toons_id/episode/:eps_id', ForyousController.detailEpisode)  
 })
 
 app.listen(port, () => console.log(`Listening on port ${port}!`))

@@ -5,8 +5,11 @@ module.exports = (sequelize, DataTypes) => {
     image: DataTypes.STRING,
     page: DataTypes.STRING
   }, {});
-  pages.associate = function(models) {
-    // associations can be defined here
+  pages.associate = function(models) {    
+    pages.belongsTo(models.episodes, {
+      as : 'detailId',
+      foreignKey : 'episodeId'
+    })
   };
   return pages;
 };
