@@ -326,28 +326,39 @@ exports.CreateImageEps = (req, res)=>{
         });
     })
 }
-    // Episode.findAll ({
-        
-    //     include: [
-    //         {
-    //             model: Foryou,
-    //             as: 'created_By',
-    //             where: {createdBy: userid, id: toons_id}
+exports.DeleteImgDtlEps = (req,res) =>{
+    const userId = req.params.userid
+    const toonId = req.params.toons_id
+    const epsId = req.params.eps_id
+    const ImgId = req.params.img_id
+
+    Page.findAll({
+        include : [
+            {
+                model : Episode,
+                as : "detail_Id",
+                where :  {titleId:toonId, id:epsId},
+                attributes : [],
+                include : [
+                    {
+                        model : Foryou,
+                        as :"detailId",
+                        where : {createdBy:userId, id:toonId}
+                    }
+                ]
+            }
+        ],
+       
+    }).then(item => {
+        Page.destroy({
+            where : {episodeId : epsId, id: ImgId },
+            attributes: ["id"]
+        }).then(item => {
+            res.send({
+                Message : "Delete succes",
                
-    //         } 
-    //     ]
-    // }).then(data => {
-    //     res.send(data)
-    // })
-
+            })
+        })
+    })
+}
     
-   
-
-// exports.store = (req,res) => {
-//     Fouryou.create(req.body).then(fouryou=>{
-//         res.send({
-//             message: "succes",
-//             fouryou
-//         })
-//     })
-// }
