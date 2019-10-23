@@ -1,11 +1,11 @@
 import React, {Component,} from 'react';
-import {Container, Content, View ,Form, Item, CardItem, Icon, Input,Button, Text ,Toast} from 'native-base';
+import {Container, Content, View ,Form, Item, CardItem, Icon, Input,Button, Text } from 'native-base';
 import {StyleSheet,Image, TouchableOpacity} from 'react-native';
 import axios from 'axios';
 import AsyncStorage from '@react-native-community/async-storage';
 import {ip} from '../ip'
 
-export default class Login extends Component{
+export default class register extends Component{
 
   constructor(){
       super();
@@ -15,6 +15,7 @@ export default class Login extends Component{
         allow :true,              // menangkap nilai yang statis
         isDisabled: true,
         username: "",
+        name : "",
         token : "",
         password: "" ,
         tokening : "",
@@ -22,25 +23,20 @@ export default class Login extends Component{
       }
   }
 
-    async setitem(){
-      AsyncStorage.setItem('userToken', this.state.token);
-      AsyncStorage.setItem('userId', JSON.stringify(this.state.userId)) // json.stringfy pengubah jadi string
-    }
-    login = async () => {
+    register = async () => {
       try{
         let tempUser = {
           email : this.state.username,
-          password : this.state.password
+          password : this.state.password,
+          name : this.state.name
         }
-        await axios.post(`${ip}/login`,tempUser)
+        await axios.post(`${ip}/register`,tempUser)
         .then((response) => {
-          if (typeof response.data.token !== 'undefined'){
-            this.setState({token: response.data.token})
-            this.setState({userId : response.data.user.id})
-            this.setitem()
-            this.props.navigation.navigate('ForYou')
+          if (typeof response.data !== 'undefined'){
+            alert('user registered')
+            this.props.navigation.navigate('Login')
           }else{
-            alert('Failed')
+            alert(' Registration Failed')
           }
         })
         .catch((error)=>{
@@ -93,7 +89,7 @@ export default class Login extends Component{
     if ((this.state.username !== '') && (this.state.password!== '')){  
       if (/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(this.state.username)) {
       this.state.allow = true;
-      this.login()
+      this.register()
       }else{
       this.state.allow = false; 
       }
@@ -103,18 +99,22 @@ export default class Login extends Component{
 
 render(){ 
   return(
-    <Container style={{backgroundColor:'#dce0dd', borderRadius:20}}>
-      <CardItem cardBody>
-              <Image source={{uri: 'https://i1.wp.com/www.comicsbeat.com/wp-content/uploads/2019/06/webtoon-min-1.png?fit=1200%2C450&ssl=1'}} style={{height: 270, width: null, flex: 2}}/>
-      </CardItem>
+    <Container style={{backgroundColor:'#dce0dd',}}>
+  
       <Content padder>
         <View style={styles.title}>
-          <Text style={styles.login}>Log In</Text>
-          <Text>Login with your account WebToon</Text>
+          <Text style={styles.login}>Register</Text>
+          <Text>Create your account WebToon</Text>
         </View>
         
         <View style={styles.container}>
           <Form >
+          <Text style={styles.label}>Your Name</Text>
+              <Item rounded style={{backgroundColor:'white'}}>
+                 <Icon active name='person' />
+                  <Input placeholder="Your Name"  onChangeText={(name) => this.setState({name: name})}
+                  keyboardType= "Email"/>
+              </Item>
             <Text style={styles.label}>Username</Text>
               <Item rounded style={{backgroundColor:'white'}}>
                  <Icon active name='home' />
@@ -132,14 +132,8 @@ render(){
               success disabled = {this.state.isDisabled} rounded block style={styles.button} 
               onPress={() => this.validate()}
           >
-            <Text >Log In</Text>
+            <Text >Register Now</Text>
           </Button>
-          <View style={styles.titlees}>
-              <Text style={styles.signupText}>Dont have an account yet?</Text>
-          <TouchableOpacity onPress = {() => this.props.navigation.navigate("register")}>
-              <Text style={styles.signupButton}>Signup</Text>
-          </TouchableOpacity>
-          </View>
         </View>
 
     </Content>
@@ -149,38 +143,29 @@ render(){
 }
 }
 const styles = StyleSheet.create({
-  title:{
-    alignItems: "center", 
-    marginTop:30, 
-    marginBottom:30, 
-    fontFamily: 'Austin-Light'
-  },
-  titlees:{
-    flexGrow: 1,
-    alignItems:'flex-end',    
-    justifyContent :'center',
-    paddingVertical:10,
-    flexDirection:'row'
-  },
-  signupButton: {
-    color:'#39c45e',
-    fontSize:16, 
-    fontWeight:'500'
+    title:{
+        alignItems: "center", 
+        marginTop:30, 
+        marginBottom:30, 
+        fontFamily: 'Austin-Light',
     },
     
-  login: {
-    fontSize: 30, 
-    marginBottom:3, 
+    login: {
+        fontSize: 30, 
+        marginBottom:3, 
     },
-  container: {
-    paddingHorizontal: 30
-  
-  },
-  label: {
-    padding: 5
-  },
-  button:{
-    marginTop: 25,
-    justifyContent : 'center'
-  }
-  })
+
+    container: {
+        paddingHorizontal: 30,
+
+    },
+
+    label: {
+        padding: 5
+    },
+
+    button:{
+        marginTop: 25,
+        justifyContent : 'center'
+    }
+    })

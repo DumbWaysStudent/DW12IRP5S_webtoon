@@ -1,21 +1,28 @@
 import React, {Component} from 'react';
 import {StyleSheet, Image, FlatList} from 'react-native';
 import {Container, Content, View} from 'native-base';
+import axios from 'axios'
+import {ip} from '../ip'
 
 export default class DetailEpisode extends Component {
-    constructor(){
+    constructor(props){
         super();
         this.state = {
-                banners : [{
-                    image: 'https://i.pinimg.com/originals/b1/ec/ce/b1ecce8b8b84345d2113b62660ac30d5.jpg',
-                }, {
-                    image: 'https://data.whicdn.com/images/293083936/large.jpg',
-                }, {
-                    image: 'https://pm1.narvii.com/7088/7d606783f72f67dfa049c3fd0dd234a39794e48ar1-750-852v2_hq.jpg'
-                }]
+                banners : [],
+                id : props.navigation.getParam(`toon`),
+                idToon : props.navigation.getParam(`epsid`)
             }
         }
 
+        componentDidMount(){
+            axios.get(`${ip}/webtoon/${this.state.idToon}/episode/${this.state.id}`)
+            .then(res => {
+                const banners = res.data
+                console.log(banners)
+                this.setState({banners})
+            })
+        }
+        
     render(){
         return(
             <Container>
@@ -40,12 +47,13 @@ export default class DetailEpisode extends Component {
       marginRight:20
     },
     AllContent: {
-      paddingVertical: 10},
+      paddingVertical: 10
+    },
     AllCon: {
       margin:5, 
       marginTop: 0},
     AllImg: { 
-      width: 420, 
+      width: 400, 
       height: 500, 
       }
   })

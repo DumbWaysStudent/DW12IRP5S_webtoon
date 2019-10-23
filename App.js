@@ -13,6 +13,7 @@ import { createStackNavigator,  } from 'react-navigation-stack';
 
 
 import Login from './components/screen/Login'
+import register from './components/screen/register'
 import ForYou from './components/screen/ForYou'
 import Detail from './components/screen/Detail'
 import DetailEpisode from './components/screen/DetailEpisode'
@@ -53,8 +54,23 @@ const SignedOut = createStackNavigator(
         screen: Login,
         title: 'Login',
         navigationOptions: {header: null},
+      },
+      register: {
+        screen: register,
+        title: 'register',
+        navigationOptions : () => ({
+          headerStyle: {
+              backgroundColor : '#dce0dd'
+          }, 
+          headerTintColor : 'black',
+          headerTitleStyles : {
+              fontWeight : 'bold',
+          },
+
+      })
       }
-    },
+    }, 
+  
     {
       initialRouteName: 'Login',
     }
@@ -224,7 +240,7 @@ const SignedIn = createStackNavigator(
         SignedOut: SignedOut
         },
         {
-        initialRouteName: "SignedOut",
+        initialRouteName: "SignedIn",
         });
 
     export default createAppContainer(Switch);

@@ -1,35 +1,47 @@
 import React, {Component} from 'react';
-import {StyleSheet, Image, View, Dimensions, TouchableOpacity ,StatusBar,ScrollView} from 'react-native';
+import {StyleSheet, Image, View, Dimensions, TouchableOpacity ,ScrollView} from 'react-native';
 import Carousel from 'react-native-banner-carousel';
-import {Container, Header, Content, Footer, Button, FooterTab, Input, Item, Row, Text, Icon } from 'native-base';
+import {Container, Header, Content, Footer, Button, FooterTab, Input, Item, Row, CardItem, Card,Text, Icon } from 'native-base';
+import axios from 'axios';
+import {ip} from '../ip'
+import AsyncStorage from '@react-native-community/async-storage';
 
 const BannerWidth = Dimensions.get('window').width;
-const BannerHeight = 250;
+const BannerHeight = 260;
 
 export default class ForYou extends Component{
 
     constructor(){
         super();
         this.state = {
-                banners : [{
-                    title: 'The Secret Angel',
-                    image: 'https://cdn.idntimes.com/content-images/community/2019/03/opera-snapshot-2019-03-13-211947-wwwwebtoonscom-0f5ff5e345298954bf286ad981cd4c9c_600x400.png'
-                }, {
-                    title: 'Pasutri Gaje',
-                    image: 'https://cdn.idntimes.com/content-images/community/2019/03/6d0a9079a454d64fc74322862c0de1ed-66a00b52de00ef98aae34bee81593598_600x400.jpg'
-                }, {
-                    title: 'Young Mom',
-                    image: 'https://cdn.idntimes.com/content-images/community/2019/05/my-anti-fan-cover-1-8c08a8bc18c2eb167c7d63c3d9cc33f1_600x400.jpg'
-                },{
-                    title: 'Crazy Sister',
-                    image: 'https://66.media.tumblr.com/7973d478696a54d5220025dd8058040d/tumblr_peo7iir2Ra1rkxh0o_540.png'
-                }]
+                banners : [], 
+                token : '',
+                search : ''
     }
 }
+   async componentDidMount(){
+        axios.get( `${ip}/webtoons`)
+        .then(res => {
+            const banners = res.data
+            console.log(banners)
+            this.setState({banners})
+        })
+    }
+
+    async search(text){
+        console.log(text)
+        await axios.get(`${ip}/webtoons?title=${text}`)
+        .then(res => {
+          const banners = res.data
+          this.setState({banners})
+          console.log(banners)
+        })
+      }
+
     renderPage(image, index) {
         return (
             <View key={index}>
-                <Image style={{ width: BannerWidth, height: BannerHeight, borderWidth: 2 }} source={{ uri: image }} />
+                <Image style={{ width: BannerWidth, height: BannerHeight, borderWidth: 2}} source={{ uri: image }} />
             </View>
         );
     }
@@ -38,8 +50,8 @@ export default class ForYou extends Component{
             <Container>
                 <Header searchBar style={{backgroundColor:'#39c45e'}}>
                 <Item rounded>
-                    <Input placeholder="Search" />
-                    <Icon name="ios-search"/>
+                    <Input placeholder="Search" onChangeText={(text)=>{this.setState({search:text})}} />
+                    <Icon name="ios-search" onPress={()=> this.search(this.state.search)}/>
                 </Item>
                 <Button transparent>
                     <Text>Search</Text>
@@ -58,20 +70,29 @@ export default class ForYou extends Component{
                         </Carousel>
                     </View> 
                     <View style={styles.Scroll}>
+                   < Card>
+                   <CardItem cardBody style={{backgroundColor:"#fcfcfc"}}>
                         <Text style={styles.textStyle}>Favorites</Text>
-                    <ScrollView horizontal={true}>
+                    </CardItem>
+                    <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+                    <CardItem cardBody style={{backgroundColor:"#fcfcfc"}}>
                         {this.state.banners.map((image) => (
                             <View style={styles.Horizontal} key={image.image}>
-                                <TouchableOpacity onPress={() => this.props.navigation.navigate('Detail', {pictures:image.image, title:image.title})}> 
+                                <TouchableOpacity onPress={() => this.props.navigation.navigate('Detail', {pictures:image.image, title:image.title, detail:image.id})}> 
                                     <Image source={{ uri : image.image}} style={styles.Scrolimg}/>
                                     <Text style={styles.Scroltxt}> { image.title} </Text>
-                                </TouchableOpacity>
-                            </View> // {pictures:image.image, title:image.title})} pictures penampung nilai
+                                </TouchableOpacity>   
+                            </View> // {pictures:image.image, title:image.title})} pictures penampung nilai 
                         ))} 
+                         
+                         </CardItem> 
                     </ScrollView>
+                    </Card>
                     </View>
 
+                   
                     <View style={styles.Radius} >
+                        
                         <Text style={styles.textAll}>All Comics </Text>
                         {this.state.banners.map((image) =>(
                             <View key={image.image} style={styles.Images}>
@@ -113,12 +134,12 @@ const styles = StyleSheet.create({
     textStyle: {
         fontWeight : 'bold',
         fontSize : 23,
-        margin : 8
+        margin : 5
     },
     Scroll: {
-        margin: 10,
+        margin: 5,
         marginBottom : 10,
-        marginTop : 10
+        marginTop : 20
     },
     textStyle: {
         fontSize :22,
@@ -132,20 +153,22 @@ const styles = StyleSheet.create({
     },
     Scrolimg: {
         width: 150,
-        height: 150,
-        marginRight: 25,
+        height: 160,
+        marginEnd:10,
         marginTop: 5
     }, 
     Scroltxt: {
-        padding: 2,
-        alignItems : 'center'
+        padding: 1,
+        alignItems : 'center',
 
     },
     icon : {
         color : 'white'
     },
     Radius:{
+        marginBottom : 5,
         borderRadius: 50
+        
     },
     textAll: {
         fontSize: 23,
@@ -167,11 +190,11 @@ const styles = StyleSheet.create({
     },
     titleall:{
         alignItems: 'center',
-        marginLeft : 0,
-        marginBottom: 40
+        marginLeft : 5
+        
     },
     rowtxt: {
-        marginTop: 10,
+        marginTop: 3,
         padding: 15,
         fontWeight: 'bold'
     }

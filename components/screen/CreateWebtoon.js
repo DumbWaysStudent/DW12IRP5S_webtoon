@@ -1,39 +1,117 @@
 import React, { Component } from 'react';
-import { StyleSheet, Image, FlatList, TouchableOpacity } from 'react-native';
-import { View, Text, Content, Container, Row, Item, Input, Button } from 'native-base';
+import { StyleSheet, Image, FlatList, Dimensions, TouchableOpacity } from 'react-native';
+import { View, Text, Content, Container, Row, Item, Input, ListItem, Button } from 'native-base';
+import axios from 'axios';
+import {ip} from '../ip';
+import AsyncStorage from '@react-native-community/async-storage';
 
 export default class CreateWebtoon extends Component{
 
     constructor(){
         super();
         this.state = {
-                banners : [{
-                    id: '1',
-                    Eps : 'Episode 1',
-                    title: 'The Secret of Angel',
-                    image: 'https://cdn.idntimes.com/content-images/community/2019/03/opera-snapshot-2019-03-13-211947-wwwwebtoonscom-0f5ff5e345298954bf286ad981cd4c9c_600x400.png',
-                    date : '1 Januari 2019'
-                }, {
-                    id: '2',
-                    Eps : 'Episode 2',
-                    title: 'Pasutri Gaje',
-                    image: 'https://cdn.idntimes.com/content-images/community/2019/03/6d0a9079a454d64fc74322862c0de1ed-66a00b52de00ef98aae34bee81593598_600x400.jpg',
-                    date : '2 Januari 2019'
-                }, {
-                    id: '3',
-                    Eps : 'Episode 3',
-                    title: 'Young Mom',
-                    image: 'https://cdn.idntimes.com/content-images/community/2019/05/my-anti-fan-cover-1-8c08a8bc18c2eb167c7d63c3d9cc33f1_600x400.jpg',
-                    date : '3 Januari 2019'
-                },{
-                    id: '4',
-                    Eps : 'Episode 4',
-                    title: 'Crazy Sister',
-                    image: 'https://66.media.tumblr.com/7973d478696a54d5220025dd8058040d/tumblr_peo7iir2Ra1rkxh0o_540.png',
-                    date : '4 Januari 2019'
-                }]
+                banners : [],
+                id : 0,
+                newtitle : '',
+                newGenre : '',
+                newImage : '',
+                update : false,
+                toonid : 0
             }
 }
+
+async SessionToken (){
+    try {
+       const tokening = await AsyncStorage.getItem('userToken');
+       if (tokening !== null){
+           this.setState({token : tokening})
+       }else{
+           alert('must login first')
+           this.props.navigation.navigate('Login')
+           }
+       }catch (p){
+           console.log(error)
+       }
+   }
+
+async componentDidMount(){
+    console.log(this.state.token)
+    this.SessionToken()
+    const id = await AsyncStorage.getItem('userId')
+    let new_id = JSON.parse(id)
+    await axios.get(`${ip}/user/${new_id}/webtoons`,{
+        headers: {
+            'Authorization': ' Bearer '+ this.state.token
+        }
+        })
+        .then(res => {
+            const banners = res.data
+            this.setState({banners})
+            console.log(banners)
+        })
+}
+
+postwebtoon= async() =>{
+    await axios.post(`${ip}/user/${this.state.id}/webtoon`,{
+      title : this.state.newtitle,
+      genre : this.state.newGenre,
+      image : this.state.newImage
+    },{
+      headers : {
+        'Authorization': ' Bearer '+ this.state.token
+      }
+    })
+    .then(res => {
+      alert(res)
+      this.setState({modal : false})
+    })
+  }
+
+  deletewebtoon=async(id)=>{
+    await axios.delete(`${ip}/user/${this.state.id}/webtoon/${id}`,{
+      headers : {
+        'Authorization': ' Bearer '+ this.state.token
+      }
+    }).then(res=>{
+      alert('deleted')
+      this.setState()
+    })
+  }
+
+  edit=async()=>{
+    await axios.put(`${ip}/user/${this.state.id}/webtoon/${this.state.toonid}`,{
+      title : this.state.newtitle,
+      genre : this.state.newGenre,
+      image : this.state.newImage
+  },
+  {
+      headers : {
+        'Authorization': ' Bearer '+ this.state.token
+      }
+    }).then(res=>{
+      alert('updated', this.state.toonid)
+      this.setState({update:false,modal:false})
+    })
+  }
+//   allPage(image) {
+//     return (
+//         <ListItem style={styles.listItemContainer}>
+//         <TouchableOpacity onPress={()=>this.props.navigation.navigate("CreateEpisode", {title :image})} style={{width: 66, height: 58}}>
+//         <Image source={{uri : image.image}} style={{width: 66, height: 58}}></Image>
+//         </TouchableOpacity>
+//         <Body>
+//         <Text style={{fontSize:20}}>{image.tittle}</Text>
+//         <Text style={{fontSize:10}}>{image.createdAt}</Text>
+//         </Body>
+//         <Right> 
+//         <TouchableOpacity onPress={()=> this.setState({modal:true,update:true,toonid: image.id})}>
+//         <Icon size={25} style={{marginRight : 30}} name="pencil"  />
+//         </TouchableOpacity>
+//         <Icon size={25} style={{marginRight : 30,color : 'red',marginTop: 20}} name="trash" onPress={()=>this.deletewebtoon(image.id)} />
+//         </Right>
+//       </ListItem>
+//     );
+//   }
     render(){
         return(
             <Container>
@@ -54,7 +132,7 @@ export default class CreateWebtoon extends Component{
                                 <Row style={{ marginTop: 10 }}>
                                         <Image style={styles.conImg} source={{ uri: item.image }} />
                                     <View style={styles.conval}>
-                                        <Text style={styles.epstxt}> {item.Eps} </Text>
+                                        <Text style={styles.epstxt}> {item.title} </Text>
                                         <Text style={{ marginTop: 10, fontSize:13 }}> {item.date} </Text>
                                     </View>
 
@@ -93,6 +171,11 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderColor: 'black'
     },
+    listItemContainer:{
+        width: Dimensions.get('window').width,
+        marginTop: 5,
+        backgroundColor: 'white',
+      },
     epstxt: {
         fontSize: 15,
         fontWeight: 'bold'

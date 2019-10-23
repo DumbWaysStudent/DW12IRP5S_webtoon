@@ -1,8 +1,61 @@
 import React, { Component } from 'react';
-import { StyleSheet, Image, FlatList } from 'react-native';
-import { Container, Header, Content, Footer, FooterTab, Icon, Text, Item, Input, View, Button, Card, CardItem, Body } from 'native-base';
+import { StyleSheet, Image } from 'react-native';
+import { Container, Content, Footer, FooterTab, Icon, Text, View, Button, Card, CardItem } from 'native-base';
+import AsyncStorage from '@react-native-community/async-storage'
+import axios from 'axios'
+import {ip} from '../ip'
 
 export default class Profile extends Component {
+
+    constructor(props){
+        super(props)
+        this.state = {
+            token : '',
+            banners : []
+        }
+    }
+
+    async SessionToken (){
+        try {
+            const tokening = await AsyncStorage.getItem('userToken');
+            if (tokening !== null){
+                this.setState({token : tokening})
+            }else{
+                alert('must login first')
+                this.props.navigation.navigate('Login')
+            }
+        }catch (p){
+            console.log(error)
+        }
+    }
+
+    async componentDidMount(){
+        this.SessionToken()
+        const id = await AsyncStorage.getItem('userId')
+        const tokening = await AsyncStorage.getItem ('userToken')
+        let new_id = JSON.parse(id)
+        console.log('id',new_id)
+        await axios.get(`${ip}/user/${new_id}`, {
+            headers : {
+                'Authorization': 'Bearer '+ tokening
+            }
+        })
+        .then (res => {
+            const banners = res.data
+            this.setState({banners})
+            console.log(banners)
+        })
+    }
+
+    async logout() {
+        try {
+          await AsyncStorage.removeItem('userToken');
+          this.componentDidMount()
+        }
+        catch(exception) {
+          return false;
+        }
+      }
 
     static navigationOptions = ({navigation}) => {
         return {

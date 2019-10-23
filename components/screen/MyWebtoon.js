@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import {StyleSheet, View, Text, Image,TouchableOpacity, FlatList} from 'react-native';
 import {Container, Content, Row, Fab, Icon} from 'native-base';
+import axios from 'axios';
+import {ip} from '../ip'
+import AsyncStorage from '@react-native-community/async-storage';
 
 export default class MyWebtoon extends Component{
 
@@ -8,26 +11,41 @@ export default class MyWebtoon extends Component{
         super();
         this.state = {
                 active : false,
-                banners : [{
-                    title: 'The Secret of Angel',
-                    image: 'https://cdn.idntimes.com/content-images/community/2019/03/opera-snapshot-2019-03-13-211947-wwwwebtoonscom-0f5ff5e345298954bf286ad981cd4c9c_600x400.png',
-                    Text: '5 Episode'
-                }, {
-                    title: 'Pasutri Gaje',
-                    image: 'https://cdn.idntimes.com/content-images/community/2019/03/6d0a9079a454d64fc74322862c0de1ed-66a00b52de00ef98aae34bee81593598_600x400.jpg',
-                    Text:  '10 Episode'
-                }, {
-                    title: 'Young Mom',
-                    image: 'https://cdn.idntimes.com/content-images/community/2019/05/my-anti-fan-cover-1-8c08a8bc18c2eb167c7d63c3d9cc33f1_600x400.jpg',
-                    Text:  '12 Episode'
-                },{
-                    title: 'Crazy Sister',
-                    image: 'https://66.media.tumblr.com/7973d478696a54d5220025dd8058040d/tumblr_peo7iir2Ra1rkxh0o_540.png',
-                    Text:  '12 Episode'
-                }]
+                banners : [],
              }
         }
 
+    async SessionToken (){
+         try {
+            const tokening = await AsyncStorage.getItem('userToken');
+            if (tokening !== null){
+                this.setState({token : tokening})
+            }else{
+                alert('must login first')
+                this.props.navigation.navigate('Login')
+                }
+            }catch (p){
+                console.log(error)
+            }
+        }
+
+    async componentDidMount(){
+        console.log(this.state.token)
+        this.SessionToken()
+        const id = await AsyncStorage.getItem('userId')
+        let new_id = JSON.parse(id)
+        await axios.get(`${ip}/user/${new_id}/webtoons`,{
+            headers: {
+              'Authorization': ' Bearer '+ this.state.token
+            }
+          })
+          .then(res => {
+              const banners = res.data
+              this.setState({banners})
+              console.log(banners)
+          })
+    }
+   
     render(){
         return(
             <Container>
@@ -84,6 +102,7 @@ const styles = StyleSheet.create({
 
     epstxt : {
         fontSize: 15,
+        marginTop : 20,
         fontWeight: 'bold'
     }
 })
