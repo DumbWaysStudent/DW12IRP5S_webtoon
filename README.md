@@ -6,7 +6,7 @@
 This project is still on very early development stage. If you want to use for production, use it with your own risk.
 <br>More feature Coming Really Soon.
 
-## Snohoy
+## RapToon
 RapToon is a comic reading app that is themed with modern comics that can fill your free time. This app is
 inspired from the Webtoon app.
 
@@ -22,7 +22,7 @@ inspired from the Webtoon app.
 * Manage customers data
 * Manage Orders activity
 
-## Why Snohoy?
+## Why RapToon?
 * Simple Usage
 * It's React Native, so it support android & iOS by default!
 * Simple Code, so you can easily contribute on it.
