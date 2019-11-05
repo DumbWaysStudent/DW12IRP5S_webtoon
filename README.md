@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="./logo.png" width="310"/><br>
+  <img src="./logo.png" width="250"/><br>
 </h1>
 
 ## Important
@@ -13,8 +13,8 @@ inspired from the Webtoon app.
 ## Screenshots
 
 <p align="center">
-  <img src="./toon1.JPG" width="800"/>
-  <img src="./toon2.JPG" width="800"/>
+  <img src="./toon1.JPG" width="700"/>
+  <img src="./toon2.JPG" width="700"/>
 </p>
 
 ## Features
