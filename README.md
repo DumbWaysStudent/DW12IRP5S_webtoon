@@ -18,9 +18,9 @@ inspired from the Webtoon app.
 </p>
 
 ## Features
-* Manage rooms data
-* Manage customers data
-* Manage Orders activity
+* Reading Comics
+* Add, edit, and delete comics
+* Add a comic you like to your favourite
 
 ## Why RapToon?
 * Simple Usage
